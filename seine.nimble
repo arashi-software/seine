@@ -19,6 +19,8 @@ requires "cppstl >= 0.7.0"
 requires "colored_logger >= 0.1.0"
 requires "pretty >= 0.2.0"
 
+requires "https://github.com/yummy-licorice/xkb-nim"
+
 requires "vmath >= 2.0.0"
 requires "yaml >= 2.1.1"
 
