@@ -1,8 +1,13 @@
-import net, os, strutils
+import net, os, strutils, logging
+import colored_logger
 import ../seine/share
 include ../share/parser
 
-# TODO: ERROR CHECKS
+addHandler(newColoredLogger())
+
+if commandLineParams().len == 0:
+  error "No command specified"
+  quit 1
 
 try:
   parser.run()
@@ -10,7 +15,7 @@ try:
   socket.connectUnix(socketPath)
   socket.send(commandLineParams().join(" "))
 except UsageError:
-  stderr.writeLine getCurrentExceptionMsg()
+  error getCurrentExceptionMsg()
   quit(1)
 
 

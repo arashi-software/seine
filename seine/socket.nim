@@ -23,7 +23,14 @@ proc handleIPC*(msg: string) =
   let opts = parser.parse(msg.split(" "))
   if *opts.exec:
     let ctx = &opts.exec
+    if ctx.cmd.len == 0:
+      error "seine: (ipc) missing arguments for cmd"
+      return
     launchCommand(ctx.cmd.join(" "))
   elif *opts.bind:
-    echo "hi"
+    let ctx = &opts.bind
+    if ctx.cmd.len == 0:
+      error "seine: (ipc) missing arguments for cmd"
+      return
+    print (keys: ctx.keys, cmd: ctx.cmd.join(" "))
   
