@@ -8,7 +8,7 @@ proc main {.inline.} =
   # Set some environment variables
   when not defined(release): putEnv("LOUVRE_DEBUG", "4")
   putEnv("LOUVRE_WAYLAND_DISPLAY", "wayland-2")
-  putEnv("XDG_CURRENT_DESKTOP", "gogh")
+  putEnv("XDG_CURRENT_DESKTOP", "seine")
   putEnv("XDG_SESSION_TYPE", "wayland")
   putEnv("GDK_BACKEND", "wayland")
   putEnv("SDL_VIDEODRIVER", "wayland")

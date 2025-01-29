@@ -1,4 +1,4 @@
-import ./[point, gpu, factory_object]
+import ./[point, gpu, factory_object, transform]
 
 {.pragma: immutable, codegenDecl: "const $1 $2".}
 
@@ -24,6 +24,7 @@ type
   Output* {.importcpp: "Louvre::LOutput", inheritable.} = object of FactoryObject
 
 proc makeOutput*(params {.immutable.}: pointer): Output {.importcpp: "`Output`(`params`);", constructor.}
+# proc add*(output: ptr Output): bool {.importcpp: "LCompositor::addOutput".}
 func id*(output: Output): uint32 {.importcpp: "Louvre::LOutput::id".}
 func state*(output: Output): OutputState {.importcpp: "Louvre::LOutput::state".}
 func gpu*(output: Output): GPU {.importcpp: "Louvre::LOutput::gpu".}
@@ -35,6 +36,7 @@ func refreshRateLimit*(output: Output): int32 {.importcpp: "Louvre::LOutput::ref
 proc `scale=`*(output: ptr Output, scale: float32) {.importcpp: "Louvre::LOutput::setScale".}
 proc `leasable=`*(output: ptr Output, leasable: bool) {.importcpp: "Louvre::LOutput::setLeasable".}
 proc `position=`*(output: ptr Output, pos: Point) {.importcpp: "Louvre::LOutput::setPos".}
+proc `transform=`*(output: ptr Output, transform: Transform) {.importcpp: "Louvre::LOutput::setTransform"}
 proc setVsyncInternal(output: ptr Output, enabled: bool): bool {.importcpp: "Louvre::LOutput::enableVSync".}
 proc `refreshRateLimit=`*(output: ptr Output, hz: int32) {.importcpp: "Louvre::LOutput::setRefreshRateLimit".}
 proc repaint*(output: ptr Output) {.importcpp: "Louvre::LOutput::repaint".}

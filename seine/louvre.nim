@@ -17,10 +17,9 @@ when not defined(cpp):
 
 import ../louvre/[
   compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log, point,
-  surface, toplevel, scene, view, scene_view, colors, keyboard, keyboard_key_event
+  surface, toplevel, scene, view, scene_view, colors, keyboard, keyboard_key_event, transform
 ]
 
-import share
 import options
 
 proc `*`*[T](opt: Option[T]): bool {.inline.} = 
@@ -33,4 +32,4 @@ proc `&`*[T](opt: Option[T]): T {.inline.} =
   opt.get()
 
 export compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log, surface, point, toplevel, scene, view, scene_view, colors,
-       keyboard, keyboard_key_event, share
+       keyboard, keyboard_key_event, transform

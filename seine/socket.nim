@@ -1,6 +1,7 @@
 import net, os, logging, strutils, options
 import louvre
 import pretty
+import ../seine/share
 include ../share/parser
 
 proc startIPC*(): Socket =

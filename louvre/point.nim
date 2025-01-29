@@ -8,6 +8,8 @@ type
 
 func `x`*(point: Point): int32 {.importcpp: "@.x()".}
 func `y`*(point: Point): int32 {.importcpp: "@.y()".}
+func `w`*(size: Size): int32 {.importcpp: "@.w()".}
+func `h`*(size: Size): int32 {.importcpp: "@.h()".}
 func distanceFrom*(point1: ptr Point, point2: Point): int32 {.importcpp: "LPoint::distanceFrom".}
 
 {.pop.}

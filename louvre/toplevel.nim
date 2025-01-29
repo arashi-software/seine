@@ -43,6 +43,9 @@ func getExclusiveOutput*(toplevel: ptr Toplevel): ptr Output {.importcpp: "Louvr
 func appId(toplevel: ptr Toplevel): CppString {.importcpp: "Louvre::LToplevelRole::appId".}
 proc close*(toplevel: ptr Toplevel) {.importcpp: "Louvre::LToplevelRole::close".}
 
+proc rolePos*(toplevel: ptr Toplevel): ptr Point {.importcpp: "LToplevelRole::rolePos".}
+proc getSize*(toplevel: ptr Toplevel): ptr Size {.importcpp: "LToplevelRole::bounds".}
+
 {.pop.}
 
 func getAppId*(toplevel: ptr Toplevel): string {.inline.} =
