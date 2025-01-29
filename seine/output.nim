@@ -2,11 +2,10 @@ import std/[logging]
 import louvre, share, tree
 
 type
-  SeineOut* {.codegenDecl: FactoryDerivation.} = object of Output
+  SeineOut* {.codegenDecl: FactoryDerivation, exportc.} = object of Output
     workspaces*: seq[Tree]
 
-proc newOutput*(params: pointer): ptr SeineOut =
-  {.emit: "return new `SeineOut`(`params`);".}
+proc newOutput*(params: pointer): ptr SeineOut {.importcpp: "new SeineOut(@)".}
 
 proc initializeGL*(output: ptr SeineOut) {.virtual.} =
   debug "seine: (output) initializing OpenGL (dispatching call to scene)"
