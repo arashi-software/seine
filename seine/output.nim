@@ -1,9 +1,15 @@
 import std/[logging]
-import louvre, share, tree
+import louvre, share, tree, global
 
 type
   SeineOut* {.codegenDecl: FactoryDerivation, exportc.} = object of Output
     workspaces*: seq[Tree]
+
+proc setWallpaper*(output: ptr Output, path: string) =
+  var background = newTextureView(loadTexture(newPath(path)[]))
+  background.addr().pos = output[].pos
+  background.addr().dstSize = output[].size
+  # TODO: Implement rest of wallpaper setting
 
 proc newOutput*(params: pointer): ptr SeineOut {.importcpp: "new SeineOut(@)".}
 

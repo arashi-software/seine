@@ -1,8 +1,7 @@
 import std/[os, logging, selectors, net]
 import colored_logger
 import cppstl/std_smartptrs
-import louvre, socket
-import compositor
+import louvre, socket, global, compositor
 
 proc main {.inline.} =
   # Set some environment variables
@@ -21,6 +20,10 @@ proc main {.inline.} =
 
   # Create compositor object
   var seine = makeUnique(Seine)
+
+  # Encode and save it into our global storage
+  global.comp = &seine.get()
+  debug "seine: (global) encoded compositor state"
 
   # Make sure it starts
   if not seine.start():

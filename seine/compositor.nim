@@ -26,6 +26,7 @@ proc initialized(seine: ptr Seine) {.virtual.} =
     output.transform = Normal
     output.position = toPoint pos
     pos = vec2(0, pos.x + float32 output[].size.w)
+    output.setWallpaper("/home/licorice/Pictures/washed-flowers.png")
     comp.addOutput(output) 
     output.repaint()
 

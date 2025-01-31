@@ -29,6 +29,7 @@ func id*(output: Output): uint32 {.importcpp: "Louvre::LOutput::id".}
 func state*(output: Output): OutputState {.importcpp: "Louvre::LOutput::state".}
 func gpu*(output: Output): GPU {.importcpp: "Louvre::LOutput::gpu".}
 func size*(output: Output): Size {.importcpp: "Louvre::LOutput::size".}
+func pos*(output: Output): Point {.importcpp: "Louvre::LOutput::pos"}
 func dpi*(output: Output): int32 {.importcpp: "Louvre::LOutput::dpi".}
 func isNonDesktop*(output: Output): bool {.importcpp: "Louvre::LOutput::isNonDesktop".}
 func preferVSync*(output: Output): bool {.importcpp: "Louvre::LOutput::preferVSync".}
