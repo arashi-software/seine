@@ -12,7 +12,11 @@ type
     Pausing
     Paused
     Resuming
-
+      
+  GraphicBackendID* {.importcpp: "Louvre::LGraphicBackendID", pure.} = enum
+    LGraphicBackendDRM
+    LGraphicBackendWayland
+    
   Compositor* {.importcpp: "Louvre::LCompositor", inheritable.} = object
 
 func getVersion*(compositor: Compositor): Version {.importcpp: "Louvre::LCompositor::version".}
@@ -27,6 +31,7 @@ proc start*(compositor: var Compositor): bool {.importcpp: "Louvre::LCompositor:
 proc processLoop*(compositor: var Compositor, msTimeout: int32) {.importcpp: "Louvre::LCompositor::processLoop".}
 proc getFd*(compositor: var Compositor): int32 {.importcpp: "Louvre::LCompositor::fd".}
 
+proc graphicBackendId*(compositor: Compositor): GraphicBackendID {.importcpp: "Louvre::LCompositor::graphicBackendId".}
 proc initialized*(compositor: ptr Compositor) {.importcpp: "Louvre::LCompositor::initialized".}
 proc createObjectRequest*(
   compositor: ptr Compositor,

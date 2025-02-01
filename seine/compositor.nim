@@ -1,10 +1,9 @@
 import std/[logging]
-import louvre, share, output
+import louvre, share, output, types
 import vmath
 
 type
-  Seine* = object of Compositor
-    scene*: Scene
+  Seine* = object of SeineT
 
 proc initialized(seine: ptr Seine) {.virtual.} =
   info "seine: (compositor) initializing"

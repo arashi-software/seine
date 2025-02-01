@@ -1,5 +1,6 @@
 import std/[logging]
-import louvre, share, tree, global
+import vmath
+import louvre, share, tree, global, types
 
 type
   SeineOut* {.codegenDecl: FactoryDerivation, exportc.} = object of Output
@@ -7,9 +8,14 @@ type
 
 proc setWallpaper*(output: ptr Output, path: string) =
   var background = newTextureView(loadTexture(newPath(path)[]))
-  background.addr().pos = output[].pos
-  background.addr().dstSize = output[].size
-  # TODO: Implement rest of wallpaper setting
+  background.addr.pos = output[].pos
+  background.addr.dstSize = output[].size
+  if background.addr.isNil() or (output[].size().x == 0 or output[].size().y == 0):
+    return
+  var compositor = (ptr Compositor) state()
+  if compositor[].graphicBackendId() == LGraphicBackendDRM:
+    var bufferSize = toSize vec2(0, 0)
+    # TODO: Complete rest of it
 
 proc newOutput*(params: pointer): ptr SeineOut {.importcpp: "new SeineOut(@)".}
 
